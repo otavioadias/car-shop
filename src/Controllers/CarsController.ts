@@ -23,6 +23,21 @@ class CarsController {
       this.next(error);
     }
   }
+
+  public async findAll() {
+    try {
+      const cars = await this.service.findAll();
+      return this.res.status(200).json(cars);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async findById() {
+    const { id } = this.req.params;
+    const car = await this.service.findById(id);
+    return this.res.status(car.status).json(car.message);
+  }
 }
 
 export default CarsController;

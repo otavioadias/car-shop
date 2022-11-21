@@ -24,4 +24,24 @@ const carResponse = {
 
 const carOutput: Cars = new Cars(carResponse);
 
-export { carInput, carOutput };
+const inputArray = [
+  {
+    model: 'Marea',
+    year: 2002,
+    color: 'Black',
+    status: true,
+    buyValue: 15.990,
+    doorsQty: 4,
+    seatsQty: 5,
+  },
+  {
+    model: 'Uno da Escada',
+    year: 1960,
+    color: 'Red',
+    buyValue: 1500,
+    doorsQty: 2,
+    seatsQty: 2,
+  },
+];
+
+export { carInput, carOutput, inputArray };

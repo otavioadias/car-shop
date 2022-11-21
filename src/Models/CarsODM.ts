@@ -1,4 +1,4 @@
-import {
+import mongoose, {
   Model,
   Schema,
   model,
@@ -26,6 +26,14 @@ class CarsODM {
 
   public async create(cars: ICars): Promise<ICars> {
     return this.model.create({ ...cars });
+  }
+
+  public async findAll(): Promise<ICars[]> {
+    return this.model.find();
+  }
+
+  public async findById(id: mongoose.Types.ObjectId): Promise<ICars[]> {
+    return this.model.find({ _id: id });
   }
 }
 
