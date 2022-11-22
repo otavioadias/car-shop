@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import { motorcycleInput, motorcycleOutput, inputArray } from '../../mocks/Motorcycle';
+import { motorcycleInput, motorcycleOutput, inputArray,
+  motorOutputUpdate, motorcycleUpdate } from '../../mocks/Motorcycle';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 import Motorcycle from '../../../src/Domains/Motorcycle';
 import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
@@ -74,6 +75,19 @@ describe('MotorcycleService', function () {
         expect((error as Error).message).to.be.deep.equal({ message: 'Motorcycle not found' });
       }
      
+      sinon.restore();
+    });
+  });
+
+  describe('Deve ser possível atualizar uma moto', function () {
+    it('Deve atualizar o moto com sucesso', async function () {
+      sinon.stub(Model, 'findByIdAndUpdate').resolves(motorOutputUpdate);
+      const id = '6348513f34c397abcad047e5';
+      const service = new MotorcycleService();
+      const result = await service.update(id, motorcycleUpdate);
+
+      expect(result.message).to.be.deep.equal(motorOutputUpdate);
+
       sinon.restore();
     });
   });

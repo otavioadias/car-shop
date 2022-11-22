@@ -24,6 +24,29 @@ const motorcycleResponse = {
 
 const motorcycleOutput: Motorcycle = new Motorcycle(motorcycleResponse);
 
+const motorcycleUpdate: IMotorcycle = {
+  model: 'Honda Cb 600',
+  year: 2007,
+  color: 'Blue',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
+const motorResponseUpdate = {
+  id: '6348513f34c397abcad047e5',
+  model: 'Honda Cb 600',
+  year: 2007,
+  color: 'Blue',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
+const motorOutputUpdate: Motorcycle = new Motorcycle(motorResponseUpdate);
+
 const inputArray = [
   {
     model: 'Honda Cb 600 Hornet',
@@ -45,4 +68,11 @@ const inputArray = [
   },
 ];
 
-export { motorcycleInput, motorcycleOutput, inputArray };
+export { 
+  motorcycleInput, 
+  motorcycleOutput, 
+  inputArray, 
+  motorOutputUpdate, 
+  motorcycleUpdate, 
+  motorResponseUpdate,
+};

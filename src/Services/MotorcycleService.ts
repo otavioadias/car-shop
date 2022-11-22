@@ -40,6 +40,16 @@ class MotorcycleService {
     }
     return { status: 200, message: moto };
   }
+
+  public async update(id: string, car: IMotorcycle) {
+    const motorcycleODM = new MotorcycleODM();
+    const motorUpdated = await motorcycleODM.update(id, car);
+    const updated = this.createMotorsDomain(motorUpdated);
+    if (!updated) {
+      return { status: 404, message: { message: 'Motorcycle not found' } };
+    }
+    return { status: 200, message: updated };
+  }
 }
 
 export default MotorcycleService;

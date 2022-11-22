@@ -1,6 +1,8 @@
+import mongoose from 'mongoose';
 import { NextFunction, Request, Response } from 'express';
 import MotorcycleService from '../Services/MotorcycleService';
 
+const { ObjectId } = mongoose.Types;
 class MotorcycleController {
   private req: Request;
   private res: Response;
@@ -37,6 +39,16 @@ class MotorcycleController {
     const { id } = this.req.params;
     const moto = await this.service.findById(id);
     return this.res.status(moto.status).json(moto.message);
+  }
+
+  public async update() {
+    const { id } = this.req.params;
+    const validate = ObjectId.isValid(id);
+    if (validate === false) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+    const motor = await this.service.update(id, this.req.body);
+    return this.res.status(motor.status).json(motor.message);
   }
 }
 
