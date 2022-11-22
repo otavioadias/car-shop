@@ -1,12 +1,7 @@
-import mongoose, {
-  Model,
-  Schema,
-  model,
-  models,
-  UpdateQuery,
-} from 'mongoose';
+import { Model, Schema, model, models, UpdateQuery } from 'mongoose';
+import * as mongoose from 'mongoose';
   
-class AbstractODM<T> {
+export default class AbstractODM<T> {
   protected model: Model<T>;
   protected schema: Schema;
   protected modelName: string;
@@ -37,5 +32,3 @@ class AbstractODM<T> {
     );
   }
 }
-  
-export default AbstractODM;
