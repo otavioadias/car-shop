@@ -11,6 +11,16 @@ const carInput: ICars = {
   seatsQty: 5,
 };
 
+const carUpdate: ICars = {
+  model: 'Marea',
+  year: 2004,
+  color: 'White',
+  status: true,
+  buyValue: 15.990,
+  doorsQty: 4,
+  seatsQty: 5,
+};
+
 const carResponse = {
   id: '6348513f34c397abcad040b2',
   model: 'Marea',
@@ -23,6 +33,19 @@ const carResponse = {
 };
 
 const carOutput: Cars = new Cars(carResponse);
+
+const carResponseUpdate = {
+  id: '6348513f34c397abcad046c3',
+  model: 'Marea',
+  year: 2004,
+  color: 'White',
+  status: true,
+  buyValue: 15.990,
+  doorsQty: 4,
+  seatsQty: 5,
+};
+
+const carOutputUpdate: Cars = new Cars(carResponseUpdate);
 
 const inputArray = [
   {
@@ -44,4 +67,4 @@ const inputArray = [
   },
 ];
 
-export { carInput, carOutput, inputArray };
+export { carInput, carOutput, inputArray, carUpdate, carOutputUpdate };

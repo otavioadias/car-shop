@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import { carInput, carOutput, inputArray } from '../../mocks/Cars';
+import { carInput, carOutput, carOutputUpdate, carUpdate, inputArray } from '../../mocks/Cars';
 import CarsService from '../../../src/Services/CarsService';
 import Cars from '../../../src/Domains/Car';
 import ICars from '../../../src/Interfaces/ICar';
@@ -73,6 +73,19 @@ describe('CarsService', function () {
         expect((error as Error).message).to.be.deep.equal({ message: 'Car not found' });
       }
      
+      sinon.restore();
+    });
+  });
+
+  describe('Deve ser possível atualizar um carro', function () {
+    it('Deve atualizar o carro com sucesso', async function () {
+      sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutputUpdate);
+      const id = '6348513f34c397abcad046c3';
+      const service = new CarsService();
+      const result = await service.update(id, carUpdate);
+
+      expect(result.message).to.be.deep.equal(carOutputUpdate);
+
       sinon.restore();
     });
   });
