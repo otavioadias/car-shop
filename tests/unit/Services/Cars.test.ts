@@ -40,8 +40,39 @@ describe('CarsService', function () {
       const service = new CarsService();
       const result = await service.findById('6348513f34c397abcad040b2');
 
+      expect(result.status).to.be.equal(200);
       expect(result.message).to.be.deep.equal(carOutput);
 
+      sinon.restore();
+    });
+  });
+
+  describe('Deve retornar erro se o id for inválido', function () {
+    it('Deve retornar um erro 404', async function () {
+      sinon.stub(Model, 'find').resolves();
+
+      try {
+        const service = new CarsService();
+        await service.findById('634851');
+      } catch (error) {
+        expect((error as Error).message).to.be.deep.equal({ message: 'Invalid mongo id' });
+      }
+     
+      sinon.restore();
+    });
+  });
+
+  describe('Deve retornar erro se o carro não for encontrado', function () {
+    it('Deve retornar um erro 422', async function () {
+      sinon.stub(Model, 'find').resolves([]);
+
+      try {
+        const service = new CarsService();
+        await service.findById('6348513f34c397abcad04666');
+      } catch (error) {
+        expect((error as Error).message).to.be.deep.equal({ message: 'Car not found' });
+      }
+     
       sinon.restore();
     });
   });

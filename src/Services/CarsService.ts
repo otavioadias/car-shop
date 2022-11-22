@@ -40,6 +40,16 @@ class CarsService {
     }
     return { status: 200, message: car };
   }
+
+  public async update(id: string, car: ICars) {
+    const carsODM = new CarsODM();
+    const carUpdated = await carsODM.update(id, car);
+    const updated = this.createCarsDomain(carUpdated);
+    if (!updated) {
+      return { status: 404, message: { message: 'Car not found' } };
+    }
+    return { status: 200, message: updated };
+  }
 }
 
 export default CarsService;
